@@ -1,9 +1,6 @@
 pipeline {
     agent any
 
-   agent {
-        label 'windows'  // Use a Windows agent/node
-    }
     environment {
         PROJECT_DIR="my-app"
     }
