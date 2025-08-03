@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+   agent {
+        label 'windows'  // Use a Windows agent/node
+    }
     environment {
         PROJECT_DIR="my-app"
     }
@@ -11,12 +14,13 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/ahamedmm/JenkinsDemo.git'
             }
         }
-
-        stage('Install Dependencies') {
+        stage('Install Python Dependencies') {
             steps {
+                bat 'python -m pip install --upgrade pip'  // Ensure pip is up-to-date
                 bat 'pip install -r requirements.txt'
             }
         }
+        
 
         stage('Run App') {
             steps {
